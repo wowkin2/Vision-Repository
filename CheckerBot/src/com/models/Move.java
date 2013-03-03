@@ -1,28 +1,53 @@
 package com.models;
 
 public class Move {
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Move other = (Move) obj;
+		if (finishPoint == null) {
+			if (other.finishPoint != null)
+				return false;
+		} else if (!finishPoint.equals(other.finishPoint))
+			return false;
+		if (priority != other.priority)
+			return false;
+		if (startPoint == null) {
+			if (other.startPoint != null)
+				return false;
+		} else if (!startPoint.equals(other.startPoint))
+			return false;
+		return true;
+	}
+
 	private Point startPoint;
 	private Point finishPoint;
-	private boolean fight = false;
+	private int priority = 0;
 
-	public boolean isFight() {
-		return fight;
+	public int getPriority() {
+		return priority;
 	}
 
-	public void setFight(boolean fight) {
-		this.fight = fight;
+	public void setPriority(int priority) {
+		this.priority = priority;
 	}
+
 	public Move(Point startPoint, Point finishPoint) {
 		super();
 		this.startPoint = startPoint;
 		this.finishPoint = finishPoint;
 	}
-	
-	public Move(Point startPoint, Point finishPoint, boolean fight) {
+
+	public Move(Point startPoint, Point finishPoint, int priority) {
 		super();
 		this.startPoint = startPoint;
 		this.finishPoint = finishPoint;
-		this.fight = fight;
+		this.priority = priority;
 	}
 
 	public Point getStartPoint() {
@@ -42,8 +67,9 @@ public class Move {
 	}
 
 	public String toString() {
-		return startPoint.getX() + ":" + startPoint.getY() + " - "
-				+ finishPoint.getX() + ":" + finishPoint.getY() + " " + fight;
+		return "" + ((char) (startPoint.getX() + 65)) + (8 - startPoint.getY())
+				+ "-" + ((char) (finishPoint.getX() + 65))
+				+ (8 - finishPoint.getY())
+				+ (priority > 0 ? " p" + priority : "");
 	}
-
 }

@@ -21,8 +21,12 @@ public class Field {
 //	private static final int endX = 412;
 //	private static final int endY = 437;
 
-	private static final int screenWeight = 1920;
-	private static final int screenHight = 1080;
+	private static final int screenWidth = 1920;
+	private static final int screenHeight = 1080;
+	
+//	private static final int screenWeight = 1920;
+//	private static final int screenHight = 1080;
+
 	public static final int plateSize = 48;
 
 	private static String[][] desk = new String[8][8];
@@ -56,7 +60,7 @@ public class Field {
 				BufferedImage.TYPE_INT_RGB);
 		Graphics2D g = dst.createGraphics();
 
-		g.drawImage(image, x, y, screenWeight, screenHight, null);
+		g.drawImage(image, x, y, screenWidth, screenHeight, null);
 		g.dispose();
 		// ImageIO.write(dst, "PNG", new FileOutputStream("plate.png"));
 		return dst;
